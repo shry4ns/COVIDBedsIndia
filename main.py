@@ -21,7 +21,7 @@ def twitterbot():
         
         except twitter.TweepError as error:
             pass
-if __name__ == "__main__":
-    while True:
-        twitterbot()
-        time.sleep(500)
+# if __name__ == "__main__":
+while True:
+    twitterbot()
+    time.sleep(500)
