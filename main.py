@@ -8,23 +8,20 @@ auth.set_access_token(keys.ACCESS_TOKEN, keys.SECRET_ACCESS_TOKEN)
 api = twitter.API(auth)
 
 
-def twitterbot(hashtag, delay):
-    while True:
-        print(f"\n {datetime.datetime.now()}\n")
+def twitterbot():
 
-        for tweet in twitter.Cursor(api.search, q=hashtag, rpp=10).items(50):
-            try:
-                tweet_id = dict(tweet._json)["id"]
-                tweet_text = dict(tweet._json)["text"]
+    mentions = api.mentions_timeline(count = 450)
 
-                print(f"id: {str(tweet_id)}")
-                print(f"text: {str(tweet_text)}")
+    for tweet in mentions:
+        try:
+            tweet_id = dict(tweet._json)["id"]
+            tweet_text = dict(tweet._json)["text"]
 
-                api.retweet(tweet_id)
-            
-            except twitter.TweepError as error:
-                print(error.reason)
+            api.retweet(tweet_id)
         
-        time.sleep(delay)
-
-twitterbot("COVIDBeds", 10)
+        except twitter.TweepError as error:
+            pass
+if __name__ == "__main__":
+    while True:
+        twitterbot()
+        time.sleep(500)
