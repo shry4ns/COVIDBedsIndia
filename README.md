@@ -1,4 +1,4 @@
-# COVIDBedsIndial
+# COVID Beds India Twitter Bot
 
 ## Introduction
 This is a simple Twitter bot to help aggregate COVID beds listings in India during the second wave. 
